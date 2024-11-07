@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+.combos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    justify-content: center;
+}
+
+.combo-item {
+    background-color: #e7e7e7;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.combo-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.combo-item img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.combo-item h2, .combo-item p {
+    margin-bottom: 10px;
+}
+
+.combo-item button {
+    padding: 10px;
+    background-color: #e7b9b9;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.combo-item button:hover {
+    background-color: #d49a9a;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .combos-grid {
+        grid-template-columns: repeat(2, 1fr); /* Cambiar a 2 columnas en pantallas medianas */
+    }
+}
+
+@media (max-width: 576px) {
+    .combos-grid {
+        grid-template-columns: 1fr; /* Cambiar a 1 columna en pantallas pequeñas */
+    }
+}

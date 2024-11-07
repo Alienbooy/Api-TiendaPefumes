@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+header nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
+    padding: 15px;
+}
+
+header nav ul li {
+    margin: 0 20px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+.marcas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.marca-item a {
+    text-decoration: none;
+    color: #333;
+}
+
+.marca-item:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.marca-item {
+    background-color: #d3d3d3;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 270px;
+    height: 280px; 
+}
+
+.marca-item img {
+    width: 150px;
+    height: 180px;
+    margin-bottom: 10px;
+}
+
+.marca-item p {
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+}
+
+.social-media a img {
+    width: 30px; 
+    height: 30px;
+}

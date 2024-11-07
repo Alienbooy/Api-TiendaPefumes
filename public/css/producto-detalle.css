@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+main {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
+}
+
+.producto-detalle {
+    display: flex;
+    gap: 50px;
+    background-color: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.producto-imagen img {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.producto-info {
+    max-width: 400px;
+}
+
+.producto-info h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.producto-info p {
+    font-size: 18px;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.opciones {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-agregar {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #e7b9b9;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-agregar:hover {
+    background-color: #d49a9a;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .producto-detalle {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .producto-imagen img {
+        width: 250px;
+    }
+}
