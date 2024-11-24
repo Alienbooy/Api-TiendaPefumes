@@ -39,6 +39,8 @@ nav ul li a {
     border: none;
     padding: 10px 15px;
     margin-left: 10px;
+    border-radius: 0.6em;
+    color: white;
     cursor: pointer;
     font-size: 16px;
 }
