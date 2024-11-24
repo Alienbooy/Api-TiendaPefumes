@@ -1,29 +1,36 @@
-const loginForm = document.getElementById('login-form');
-
-loginForm.addEventListener('submit', async (event) => {
+document.getElementById('login-form').addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value.trim();
 
+    if (!email || !password) {
+        alert('Por favor, complete todos los campos.');
+        return;
+    }
+
     try {
-        const response = await fetch('/login', {
+        const response = await fetch('api/cliente/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify({ email, password }),
         });
 
         if (response.ok) {
             const data = await response.json();
             alert('Inicio de sesión exitoso.');
-            localStorage.setItem('token', data.token); // Guardar token en el almacenamiento local
-            window.location.href = '/index.html'; // Redirigir a la página principal
+
+            // Guardar el token y el nombre en localStorage
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('nombre', data.nombre);
+
+            window.location.href = './index.html'; // Redirigir a la página principal
         } else {
             const error = await response.json();
-            alert(error.message);
+            alert(error.message || 'Error al iniciar sesión.');
         }
     } catch (error) {
-        alert('Error al conectarse con el servidor.');
+        alert('No se pudo conectar con el servidor.');
         console.error(error);
     }
 });

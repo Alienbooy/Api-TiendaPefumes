@@ -32,7 +32,7 @@ exports.iniciarSesion = async (req, res) => {
 
     try {
         // Buscar cliente por email
-        const cliente = await pool.query('SELECT id_cliente, password FROM cliente WHERE email = $1', [email]);
+        const cliente = await pool.query('SELECT id_cliente, nombre, password FROM cliente WHERE email = $1', [email]);
 
         if (cliente.rows.length === 0) {
             return res.status(404).json({ message: 'Credenciales incorrectas.' });
@@ -45,9 +45,15 @@ exports.iniciarSesion = async (req, res) => {
         }
 
         // Generar token JWT
-        const token = jwt.sign({ id_cliente: cliente.rows[0].id_cliente }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        const payload = { id_cliente: cliente.rows[0].id_cliente };
+        const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-        res.status(200).json({ message: 'Inicio de sesión exitoso.', token });
+        // Enviar respuesta con el token y el nombre del usuario
+        res.status(200).json({
+            message: 'Inicio de sesión exitoso.',
+            token,
+            nombre: cliente.rows[0].nombre, // Incluir el nombre en la respuesta
+        });
     } catch (error) {
         res.status(500).json({ message: 'Error al iniciar sesión.', error: error.message });
     }
