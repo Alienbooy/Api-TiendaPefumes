@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const app = express();
 
 
@@ -7,6 +8,7 @@ const pool = require('./db');
 
 app.use(express.json());
 app.use(express.static('public'));
+app.use(cors());
 
 const clienteRouter = require('./routes/clienteRouter');
 const productoRouter = require('./routes/productoRouter');

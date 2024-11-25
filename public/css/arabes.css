@@ -5,11 +5,11 @@
 }
 
 html, body {
-    height: 100%;
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
 body {
@@ -18,55 +18,78 @@ body {
     justify-content: space-between;
 }
 
-
 main {
+    flex: 1;
     padding: 20px;
     text-align: center;
 }
 
-h1 {
+h2 {
+    font-size: 2em;
     margin-bottom: 20px;
-}
-
-.productos-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    justify-items: center;
-}
-
-.producto-item {
-    background-color: #d3d3d3;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    width: 300px;
-}
-
-.producto-item a {
-    text-decoration: none;
     color: #333;
 }
 
+#productos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+.producto-item {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    text-align: center;
+    padding: 15px;
+    width: 100%;
+    max-width: 280px;
+}
+
+.producto-item:hover {
+    transform: scale(1.05);
+}
+
 .producto-item img {
-    width: 200px;
-    height: 240px;
-    margin-bottom: 30px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    object-fit: cover;
 }
 
-.producto-item h2, .producto-item p {
-    margin: 10px 0;
+.producto-item h2 {
+    font-size: 1em;
+    color: #222;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
-/* Responsividad */
+.producto-item p {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.producto-item p strong {
+    font-size: 1em;
+    color: #000;
+}
+
 @media (max-width: 768px) {
-    .productos-grid {
-        grid-template-columns: repeat(2, 1fr);
+    #productos-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 }
 
 @media (max-width: 576px) {
-    .productos-grid {
+    #productos-grid {
         grid-template-columns: 1fr;
     }
 }

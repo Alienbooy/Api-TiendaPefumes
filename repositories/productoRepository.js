@@ -1,18 +1,36 @@
-const pool = require('../db');
+const pool = require('../db'); 
 
-const listarProductos = async () => {
-    const query = 'SELECT * FROM Producto';
-    const result = await pool.query(query);
-    return result.rows;
+const insertarProducto = async (tipo, stock, precio) => {
+    const query = `
+        INSERT INTO producto (tipo, stock, precio)
+        VALUES ($1, $2, $3)
+        RETURNING id_producto;
+    `;
+    const values = [tipo, stock, precio];
+    const result = await pool.query(query, values);
+    return result.rows[0].id_producto; 
 };
 
-const obtenerProductoPorId = async (id_producto) => {
-    const query = 'SELECT * FROM Producto WHERE id_producto = $1';
-    const result = await pool.query(query, [id_producto]);
-    return result.rows[0];
+const insertarPerfume = async (id_producto, marca, nombre, descripcion, ml, image_url) => {
+    const query = `
+        INSERT INTO perfume (id_producto, marca, nombre, descripcion, ml, image_url)
+        VALUES ($1, $2, $3, $4, $5, $6);
+    `;
+    const values = [id_producto, marca, nombre, descripcion, ml, image_url];
+    await pool.query(query, values);
+};
+
+const insertarCombo = async (id_producto, nombre, descripcion, image_url) => {
+    const query = `
+        INSERT INTO combo (id_producto, nombre, descripcion, image_url)
+        VALUES ($1, $2, $3, $4);
+    `;
+    const values = [id_producto, nombre, descripcion, image_url];
+    await pool.query(query, values);
 };
 
 module.exports = {
-    listarProductos,
-    obtenerProductoPorId,
+    insertarProducto,
+    insertarPerfume,
+    insertarCombo,
 };

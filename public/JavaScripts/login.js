@@ -20,11 +20,10 @@ document.getElementById('login-form').addEventListener('submit', async (event) =
             const data = await response.json();
             alert('Inicio de sesión exitoso.');
 
-            // Guardar el token y el nombre en localStorage
             localStorage.setItem('token', data.token);
             localStorage.setItem('nombre', data.nombre);
 
-            window.location.href = './index.html'; // Redirigir a la página principal
+            window.location.href = './index.html'; 
         } else {
             const error = await response.json();
             alert(error.message || 'Error al iniciar sesión.');
