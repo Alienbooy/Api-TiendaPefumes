@@ -29,6 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    fetchPerfumesPorMarca("Lattafa"); 
+    fetchPerfumesPorMarca("Carolina Herrera"); 
 });
 

@@ -18,65 +18,81 @@ body {
     justify-content: space-between;
 }
 
-
 main {
     padding: 20px;
     text-align: center;
+    margin: 20px auto;
 }
 
-.combos-grid {
+#combos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    justify-items: center;
+    margin: 0 auto;
+    max-width: 1200px;
 }
 
 .combo-item {
-    background-color: #e7e7e7;
+    background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    max-width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .combo-item:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .combo-item img {
     width: 100%;
-    max-width: 200px;
     height: auto;
-    margin-bottom: 20px;
-}
-
-.combo-item h2, .combo-item p {
-    margin-bottom: 10px;
-}
-
-.combo-item button {
-    padding: 10px;
-    background-color: #e7b9b9;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
     border-radius: 5px;
+    margin-bottom: 10px;
+    object-fit: cover;
 }
 
-.combo-item button:hover {
-    background-color: #d49a9a;
+.combo-item h2 {
+    margin: 10px 0;
+    font-size: 1.2em;
+    color: #222;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
-/* Responsividad */
+.title h1 {
+    font-size: 2em;
+    color: #222;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 20px 0;
+}
+
+
+.combo-item .price {
+    font-size: 1.1em;
+    color: #000;
+    font-weight: bold;
+}
+
+.combo-item:focus {
+    outline: 2px solid #000;
+    outline-offset: 2px;
+}
+
 @media (max-width: 768px) {
-    .combos-grid {
-        grid-template-columns: repeat(2, 1fr); /* Cambiar a 2 columnas en pantallas medianas */
+    #combos-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 576px) {
-    .combos-grid {
-        grid-template-columns: 1fr; /* Cambiar a 1 columna en pantallas pequeñas */
+    #combos-grid {
+        grid-template-columns: 1fr;
     }
 }

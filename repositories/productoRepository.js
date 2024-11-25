@@ -29,8 +29,21 @@ const insertarCombo = async (id_producto, nombre, descripcion, image_url) => {
     await pool.query(query, values);
 };
 
+const obtenerPerfumesPorMarca = async (marca) => {
+    const query = `
+        SELECT p.id_producto, p.tipo, p.stock, p.precio, pf.marca, pf.nombre, pf.descripcion, pf.ml, pf.image_url 
+        FROM producto p
+        INNER JOIN perfume pf ON p.id_producto = pf.id_producto
+        WHERE pf.marca = $1;
+    `;
+    const values = [marca];
+    const { rows } = await pool.query(query, values);
+    return rows.length > 0 ? rows : []; 
+};
+
 module.exports = {
     insertarProducto,
     insertarPerfume,
     insertarCombo,
+    obtenerPerfumesPorMarca, 
 };

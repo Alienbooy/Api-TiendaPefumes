@@ -6,6 +6,9 @@ const productoController = require('../controllers/productoController');
 
 router.post('/crear-perfume', productoController.crearPerfume); 
 router.post('/crear-combo', productoController.crearCombo);
-router.get('/perfumes', productoController.obtenerPerfumes);
+router.get('/combos', productoController.obtenerCombos);
+router.get('/perfumes/marca', productoController.obtenerPerfumesPorMarca);
+
+
 
 module.exports = router;

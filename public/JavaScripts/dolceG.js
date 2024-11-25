@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function renderPerfumes(perfumes) {
+        console.log(perfumes);
         productosGrid.innerHTML = ""; 
         perfumes.forEach(perfume => {
             const perfumeHTML = `
@@ -28,7 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
             productosGrid.innerHTML += perfumeHTML;
         });
     }
-
-    fetchPerfumesPorMarca("Lattafa"); 
+    
+    fetchPerfumesPorMarca("Dolce Gabbana"); 
 });
-
