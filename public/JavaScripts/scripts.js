@@ -1,21 +1,50 @@
 document.addEventListener('DOMContentLoaded', actualizarVistaSesion);
 
-const bannerImages = [
-    'imagenes/perfumes/herbaPura.jpg',
-    'imagenes/perfumes/layton.jpg',
-    'imagenes/perfumes/maison-peony.jpg',
-];
+function actualizarVistaSesion() {
+    const token = safeGetItem('token'); 
+    const nombreUsuario = safeGetItem('nombre'); 
 
-let currentIndex = 0;
+    const authButtons = document.querySelector('.auth-buttons'); 
+    const welcomeMessage = document.getElementById('welcome-message'); 
 
-const bannerImageElement = document.getElementById('bannerImage');
+    if (!authButtons) {
+        console.error('Elemento "auth-buttons" no encontrado en esta página.');
+        return; 
+    }
 
-function changeBannerImage() {
-    currentIndex = (currentIndex + 1) % bannerImages.length;
-    bannerImageElement.src = bannerImages[currentIndex];
+    if (token && nombreUsuario) {
+        console.log('Usuario autenticado, mostrando "Cerrar Sesión"...');
+
+        if (welcomeMessage) {
+            welcomeMessage.textContent = `Bienvenido, ${nombreUsuario}!`;
+        }
+
+        authButtons.innerHTML = `
+            <button id="cerrar-sesion">Cerrar Sesión</button>
+        `;
+
+        const logoutButton = document.getElementById('cerrar-sesion');
+        if (logoutButton) {
+            logoutButton.addEventListener('click', () => {
+                safeRemoveItem('token'); 
+                safeRemoveItem('nombre'); 
+                alert('Has cerrado sesión.');
+                window.location.href = './index.html'; 
+            });
+        }
+    } else {
+        console.log('Usuario no autenticado, mostrando opciones de autenticación...');
+
+        if (welcomeMessage) {
+            welcomeMessage.textContent = '¡Bienvenido!';
+        }
+
+        authButtons.innerHTML = `
+            <button onclick="location.href='login.html'">Iniciar Sesión</button>
+            <button onclick="location.href='registro.html'">Crear Usuario</button>
+        `;
+    }
 }
-
-setInterval(changeBannerImage, 5000);
 
 function safeGetItem(key) {
     try {
@@ -33,48 +62,3 @@ function safeRemoveItem(key) {
         console.error(`Error al eliminar la clave ${key} de localStorage:`, error);
     }
 }
-
-function actualizarVistaSesion() {
-    const token = localStorage.getItem('token');
-    const nombreUsuario = localStorage.getItem('nombre');
-
-    console.log('Token:', token); // Verificar si hay un token
-    console.log('Nombre del Usuario:', nombreUsuario); // Verificar si hay un nombre
-
-    const authButtons = document.querySelector('.auth-buttons');
-    const welcomeMessage = document.getElementById('welcome-message');
-
-    if (!authButtons || !welcomeMessage) {
-        console.error('Elementos del DOM no encontrados.');
-        return;
-    }
-
-    if (token && nombreUsuario) {
-        console.log('Usuario autenticado, actualizando vista...');
-        welcomeMessage.textContent = `Bienvenido, ${nombreUsuario}!`;
-
-        authButtons.innerHTML = `
-            <button id="cerrar-sesion">Cerrar Sesión</button>
-        `;
-
-        const logoutButton = document.getElementById('cerrar-sesion');
-        if (logoutButton) {
-            logoutButton.addEventListener('click', () => {
-                console.log('Cerrando sesión...');
-                localStorage.removeItem('token');
-                localStorage.removeItem('nombre');
-                alert('Has cerrado sesión.');
-                window.location.reload();
-            });
-        }
-    } else {
-        console.log('Usuario no autenticado, mostrando botones de inicio de sesión...');
-        welcomeMessage.textContent = '¡Bienvenido!';
-
-        authButtons.innerHTML = `
-            <button onclick="location.href='login.html'">Iniciar Sesión</button>
-            <button onclick="location.href='registro.html'">Crear Usuario</button>
-        `;
-    }
-}
-
