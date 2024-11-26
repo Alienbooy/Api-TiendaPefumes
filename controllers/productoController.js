@@ -2,6 +2,37 @@ const pool = require('../db');
 const productoRepository = require('../repositories/productoRepository'); 
 
 
+const getProductById = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const query = `
+            SELECT p.id_producto, 
+                   COALESCE(pf.nombre, '') AS nombre, 
+                   COALESCE(pf.marca, '') AS marca, 
+                   COALESCE(pf.descripcion, '') AS descripcion, 
+                   COALESCE(pf.ml, 0) AS ml, 
+                   COALESCE(pf.image_url, '') AS image_url, 
+                   p.precio::float AS precio, 
+                   p.stock
+            FROM producto p
+            LEFT JOIN perfume pf ON p.id_producto = pf.id_producto
+            WHERE p.id_producto = $1;
+        `;
+        const result = await pool.query(query, [id]);
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({ message: 'Producto no encontrado' });
+        }
+
+        res.status(200).json(result.rows[0]);
+    } catch (error) {
+        console.error('Error al obtener producto por ID:', error);
+        res.status(500).json({ message: 'Error interno del servidor' });
+    }
+};
+
+
 
 const obtenerCombos = async (req, res) => {
     try {
@@ -66,9 +97,12 @@ const crearCombo = async (req, res) => {
     }
 };
 
+
 module.exports = {
+    getProductById,
     obtenerCombos,
     obtenerPerfumesPorMarca,
     crearPerfume,
     crearCombo,
+    
 };

@@ -33,42 +33,21 @@
         </div>
     </header>
 
-    <main class="content-container">
-        <section class="carrito-container">
+    <main class="carrito-main">
+        <section class="carrito">
             <h1>Tu carrito</h1>
-            <div class="carrito">
-                <!-- Tabla de productos -->
-                <div class="carrito-productos">
-                    <div class="carrito-producto">
-                        <img src="imagenes/productos/dior-lip-glow-oil.jpg" alt="Producto">
-                        <div class="carrito-detalles">
-                            <h3>Dior Addict Lip Glow Oil</h3>
-                            <p>$48.30</p>
-                            <p>Color: #1</p>
-                        </div>
-                        <div class="carrito-cantidad">
-                            <button>-</button>
-                            <span>1</span>
-                            <button>+</button>
-                        </div>
-                        <p class="carrito-total">$48.30</p>
-                        <button class="carrito-eliminar">🗑️</button>
-                    </div>
-                </div>
-    
-                <!-- Resumen del pedido -->
-                <div class="carrito-resumen">
-                    <h2>Resumen del pedido</h2>
-                    <p>Total estimado: <span>$48.30 USD</span></p>
-                    <p class="carrito-impuestos">Impuesto incluido, envío y descuentos calculados en la pantalla de pago</p>
-                    <div class="carrito-pagos">
-                        <button class="carrito-pagar">Pagar pedido</button>
-                        <button class="carrito-paypal">PayPal</button>
-                    </div>
-                </div>
+            <div class="carrito-productos" id="carrito-contenido">
+                
             </div>
             <a href="./index.html" class="seguir-comprando">Seguir comprando</a>
         </section>
+
+        <aside class="carrito-resumen">
+            <h2>Resumen del pedido</h2>
+            <p>Total estimado: <span>$0.00</span> USD</p>
+            <button class="btn-pagar" id="pagar-pedido">Pagar pedido</button>
+            <button class="btn-paypal" id="paypal">PayPal</button>
+        </aside>
     </main>
     
 
@@ -81,5 +60,7 @@
             <a href="#"><img src="imagenes/iconos/icon-wpp.png" alt="WhatsApp"></a>
         </div>
     </footer>
+    <script src="./JavaScripts/scripts.js"></script>
+    <script src="./JavaScripts/carrito.js"></script>
 </body>
 </html>

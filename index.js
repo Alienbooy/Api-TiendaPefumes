@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const verificaToken = require('./middlewares/verificaToken');
 const app = express();
 
 

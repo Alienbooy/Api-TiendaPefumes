@@ -19,7 +19,9 @@ document.addEventListener("DOMContentLoaded", () => {
         perfumes.forEach(perfume => {
             const perfumeHTML = `
                 <div class="perfume-item">
-                    <img src="${perfume.image_url}" alt="${perfume.nombre}">
+                    <a href="producto-detalle.html?id=${perfume.id_producto}">
+                        <img src="${perfume.image_url}" alt="${perfume.nombre}">
+                    </a>
                     <h2>${perfume.marca}</h2>
                     <p>${perfume.nombre}</p>
                     <p>${perfume.ml} ml - $${perfume.precio.toFixed(2)}</p>
@@ -28,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
             productosGrid.innerHTML += perfumeHTML;
         });
     }
+    
 
     fetchPerfumesPorMarca("Lattafa"); 
 });

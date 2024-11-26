@@ -75,6 +75,11 @@ main {
     margin-bottom: 5px;
 }
 
+.productos-grid a {
+    text-decoration: none; 
+    color: inherit; 
+}
+
 .perfume-item p strong {
     font-size: 1em;
     color: #000;

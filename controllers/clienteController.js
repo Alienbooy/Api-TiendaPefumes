@@ -29,7 +29,7 @@ exports.iniciarSesion = async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        
+
         const cliente = await pool.query('SELECT id_cliente, nombre, password FROM cliente WHERE email = $1', [email]);
 
         if (cliente.rows.length === 0) {
@@ -48,10 +48,13 @@ exports.iniciarSesion = async (req, res) => {
             message: 'Inicio de sesión exitoso.',
             token,
             nombre: cliente.rows[0].nombre, 
+            id_cliente: cliente.rows[0].id_cliente 
         });
     } catch (error) {
+        console.error('Error en iniciarSesion:', error.message);
         res.status(500).json({ message: 'Error al iniciar sesión.', error: error.message });
     }
 };
+
 
 
